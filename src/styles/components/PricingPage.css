@@ -1,0 +1,228 @@
+.pricing-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.pricing-header p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.pricing-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.pricing-plan {
+  background: #fff;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border: 1px solid #eee;
+  width: 100%;
+  max-width: 600px;
+}
+
+.pricing-plan h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.plan-price {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.plan-price .amount {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.plan-price .currency {
+  font-size: 1.5rem;
+  color: #333;
+  margin-left: 0.25rem;
+}
+
+.plan-price .period {
+  font-size: 1.1rem;
+  color: #666;
+  margin-left: 0.25rem;
+}
+
+.plan-features {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.plan-features h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.plan-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.plan-features li {
+  margin: 1rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+.plan-features li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #03C75A;
+  font-weight: bold;
+}
+
+.subscription-terms {
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.subscription-terms h3 {
+  color: #333;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.terms-section {
+  margin-bottom: 2.5rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.terms-section:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section h4 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terms-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.terms-section li {
+  margin: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #555;
+  line-height: 1.6;
+}
+
+.terms-section li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #03C75A;
+}
+
+.pricing-footer {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #03C75A;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background: #02b350;
+  transform: translateY(-2px);
+}
+
+.subscribe-button {
+  background: #0064FF;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.subscribe-button:hover {
+  background: #0052CC;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .pricing-header h1 {
+    font-size: 2rem;
+  }
+  
+  .pricing-plan {
+    padding: 2rem 1.5rem;
+  }
+  
+  .plan-price .amount {
+    font-size: 3rem;
+  }
+  
+  .terms-section {
+    padding: 1.5rem;
+  }
+} 

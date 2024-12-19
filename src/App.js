@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import PaymentModal from './components/PaymentModal';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import PricingPage from './components/PricingPage';
+import TermsPage from './components/TermsPage';
+import PrivacyPage from './components/PrivacyPage';
 
 // 파일 업로드 컴포넌트
 const FileUpload = ({ isLoading, onFileSelect, setError }) => {
@@ -116,16 +121,46 @@ const ImagePreview = ({ image }) => {
 
 // 메인 컴포넌트
 function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function MainContent() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [emotionInfo, setEmotionInfo] = useState(null);
+  const [useCount, setUseCount] = useState(() => {
+    return parseInt(localStorage.getItem('useCount') || '0');
+  });
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   
   const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+
+  // 사용 횟수 추적 함수
+  const incrementUseCount = () => {
+    const newCount = useCount + 1;
+    setUseCount(newCount);
+    localStorage.setItem('useCount', newCount.toString());
+    
+    // 3번째 사용 후 결제 모달 표시
+    if (newCount >= 3) {
+      setShowPaymentModal(true);
+    }
+  };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
+      incrementUseCount(); // 사용 횟수 증가
       setEmotionInfo(null);
       setSelectedImage(file);
       setError(null);
@@ -138,7 +173,7 @@ function App() {
       const emotionData = {
         emotion: "알 수 없음",
         confidence: 90,
-        status: "정보를 찾을 수 없습니다",
+        status: "정보를 찾을 수 없니다",
         behaviors: [],
         recommendations: []
       };
@@ -270,7 +305,7 @@ function App() {
             const emotionData = parseEmotionInfo(text);
             setEmotionInfo(emotionData);
           } else {
-            throw new Error('API 응답 형식이 올바르지 않습니다.');
+            throw new Error('API 응답 식이 올바르지 않습니다.');
           }
           
         } catch (error) {
@@ -302,13 +337,13 @@ function App() {
         슬픔: [
           "간식이 필요한 긴급상황입니다! 🆘",
           "주인님의 신용카드가 필요한 순간입니다 💳",
-          "강아지 우울증 치료법: 1. 간식 2. 산책 3. 더 많은 간식 🎯",
+          "강아지 우울증 치료법: 1. 식 2. 산책 3. 더 많은 간식 🎯",
           "'내 장난감이 어디갔지?' 하고 고민중인 것 같아요 🧸",
           "방금 목욕했다는 슬픈 표정이군요 🛁"
         ],
         화남: [
           "누가 우리 강아지 간식을 훔쳤나요? 🕵️‍♂️",
-          "강아지 분노조절 챌린지 진행중... 🌋",
+          "강아지 분노조절 린지 진행중... 🌋",
           "우리 강아지 지금 '개'빡났습니다 😤",
           "다이어트 시작한 날의 표정이네요 🥗",
           "옆집 강아지가 자기 영역을 침범했나 봅니다 🚫"
@@ -325,7 +360,7 @@ function App() {
           "산책 가고 싶지만 침대가 더 좋은 순간 💤",
           "꿈에서는 모든 간식이 제 것이겠죠? 😴",
           "소파가 너무 편한 나머지 영영 일어나지 못할 것 같아요 🛋",
-          "산책 5분 만에 집에 가고 싶어하는 상태입니다 🏃‍♂️"
+          "산 5분 만에 집에 가고 싶어하는 상태니다 🏃‍♂️"
         ]
       };
 
@@ -335,7 +370,7 @@ function App() {
       }
 
       const defaultComments = [
-        "강아지님이 오늘따라 수수께끼 같은 표정을 짓고 계시네요 🤔",
+        "강아지님이 오늘따라 수께끼 같은 표정을 짓고 계시네요 🤔",
         "강아지의 마음을 해석하기 위해 AI가 온 힘을 다했다멍! 🔍",
         "복잡미묘한 감정을 품고 계신 것 같아요 🌟"
       ];
@@ -363,7 +398,7 @@ function App() {
         </div>
 
         <div className="status-section">
-          <h4>전반적인 상태</h4>
+          <h4>전반적 상태</h4>
           <p>{status}</p>
         </div>
 
@@ -413,6 +448,20 @@ function App() {
       )}
       
       {emotionInfo && !error && <EmotionCard {...emotionInfo} />}
+
+      {showPaymentModal && (
+        <>
+          <div className="modal-backdrop" onClick={() => setShowPaymentModal(false)}></div>
+          <PaymentModal onClose={() => setShowPaymentModal(false)} />
+        </>
+      )}
+
+      
+      <nav className="footer-links">
+        <Link to="/pricing" className="footer-link">구독 정책</Link>
+        <Link to="/terms" className="footer-link">이용약관</Link>
+        <Link to="/privacy" className="footer-link">개인정보처리방침</Link>
+      </nav>
     </div>
   );
 }

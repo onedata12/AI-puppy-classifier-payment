@@ -1,0 +1,88 @@
+.privacy-page, .terms-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.privacy-header, .terms-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.privacy-content, .terms-content {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+section {
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #191F28;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 20px;
+  color: #191F28;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #4E5968;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+li {
+  color: #4E5968;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+li:before {
+  content: "•";
+  position: absolute;
+  left: -20px;
+  color: #3182F6;
+}
+
+.privacy-footer, .terms-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #3182F6;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background: #1b64da;
+}
+
+@media (max-width: 480px) {
+  .privacy-page, .terms-page {
+    padding: 20px;
+  }
+  
+  .privacy-content, .terms-content {
+    padding: 24px;
+  }
+} 
